@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1b2a4e"/>
+      <stop offset="1" stop-color="#8a4f3b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect x="80" y="80" width="1040" height="640" rx="24" fill="#f3ead8" fill-opacity="0.12" stroke="#e6c36a" stroke-opacity="0.4"/>
+  <text x="120" y="420" font-size="64" font-family="Georgia, serif" fill="#f5efe2">Destinasi Tegal</text>
+  <text x="120" y="480" font-size="24" font-family="Arial, sans-serif" fill="#f5efe2" opacity="0.7">Placeholder lokal untuk gambar destinasi</text>
+</svg>

@@ -1,0 +1,231 @@
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("../fonts/cormorant-garamond-600.woff2") format("woff2"),
+       url("../fonts/cormorant-garamond-600.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../fonts/source-sans-3-400.woff2") format("woff2"),
+       url("../fonts/source-sans-3-400.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../fonts/source-sans-3-600.woff2") format("woff2"),
+       url("../fonts/source-sans-3-600.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-primary: #172a45;
+  --color-secondary: #8a4f3b;
+  --color-accent: #d7b46a;
+  --color-neutral: #f2e7d2;
+  --color-sand: #f7f2e9;
+  --color-ink: #1c1f2a;
+  --color-muted: #6c6f77;
+  --shadow-soft: 0 15px 35px rgba(17, 24, 39, 0.12);
+  --radius-lg: 20px;
+}
+
+body {
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  color: var(--color-ink);
+  background-color: var(--color-neutral);
+  background-image: linear-gradient(120deg, rgba(242, 231, 210, 0.96), rgba(247, 242, 233, 0.94)),
+    url("../img/batik-pattern.svg");
+  background-size: auto, 240px;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, .section-title {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+.nav-heritage {
+  background: linear-gradient(120deg, rgba(23, 42, 69, 0.96), rgba(138, 79, 59, 0.92));
+  box-shadow: 0 10px 30px rgba(12, 18, 32, 0.2);
+}
+
+.nav-admin {
+  background: linear-gradient(120deg, rgba(23, 42, 69, 0.98), rgba(19, 30, 50, 0.95));
+}
+
+.navbar-brand {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #fff;
+}
+
+.btn-cta {
+  background: linear-gradient(120deg, var(--color-accent), #e1c06b);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.4rem;
+  font-weight: 600;
+}
+
+.btn-cta:hover {
+  color: var(--color-primary);
+  box-shadow: 0 10px 20px rgba(215, 180, 106, 0.35);
+}
+
+.hero {
+  background: linear-gradient(120deg, rgba(23, 42, 69, 0.75), rgba(138, 79, 59, 0.7)),
+    url("../img/hero-tegal.svg");
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+  padding: 5rem 3rem;
+  color: #f8f4ec;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero .btn {
+  border-radius: 999px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--color-muted);
+}
+
+.category-card,
+.destination-card,
+.culture-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  background: #fff;
+  height: 100%;
+  overflow: hidden;
+}
+
+.destination-card img,
+.culture-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.category-card {
+  background: linear-gradient(140deg, rgba(23, 42, 69, 0.95), rgba(138, 79, 59, 0.92));
+  color: #fff;
+  padding: 1.4rem;
+}
+
+.category-card .badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 999px;
+}
+
+.badge-category {
+  background: rgba(215, 180, 106, 0.15);
+  color: var(--color-secondary);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+}
+
+.filter-card {
+  border-radius: 18px;
+  border: none;
+  box-shadow: var(--shadow-soft);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.feature-box {
+  border-radius: 18px;
+  background: linear-gradient(120deg, rgba(242, 231, 210, 0.95), rgba(255, 255, 255, 0.9));
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-footer {
+  background: #141f33;
+  color: #f4efe5;
+  padding: 3rem 0 2rem;
+}
+
+.site-footer .footer-title {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.site-footer .text-muted {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.detail-hero {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.gallery-grid img {
+  border-radius: 16px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.table-admin {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.form-control, .form-select {
+  border-radius: 12px;
+}
+
+.alert {
+  border-radius: 14px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+}
