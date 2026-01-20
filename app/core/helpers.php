@@ -27,7 +27,7 @@ function route_url($route = '', array $params = [])
     }
 
     $query = http_build_query($params);
-    $base = base_url('index.php');
+    $base  = base_url('index.php');
 
     if ($query === '') {
         return $base;
@@ -65,9 +65,9 @@ function route_is($pattern)
 function view($template, array $data = [])
 {
     $template = trim($template, '/');
-    $path = dirname(__DIR__) . '/views/' . $template . '.php';
+    $path     = dirname(__DIR__) . '/views/' . $template . '.php';
 
-    if (!is_file($path)) {
+    if (! is_file($path)) {
         http_response_code(500);
         echo 'View not found.';
         return;
@@ -132,29 +132,29 @@ function paginate_links($total, $page, $limit, $baseUrl)
         return '';
     }
 
-    $page = max(1, min($page, $totalPages));
+    $page  = max(1, min($page, $totalPages));
     $range = 2;
     $start = max(1, $page - $range);
-    $end = min($totalPages, $page + $range);
+    $end   = min($totalPages, $page + $range);
 
     $html = '<nav aria-label="Pagination"><ul class="pagination justify-content-center">';
 
     if ($page > 1) {
-        $query = build_query_params(['page' => $page - 1]);
-        $html .= '<li class="page-item"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">&laquo;</a></li>';
+        $query  = build_query_params(['page' => $page - 1]);
+        $html  .= '<li class="page-item"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">&laquo;</a></li>';
     } else {
         $html .= '<li class="page-item disabled"><span class="page-link">&laquo;</span></li>';
     }
 
     for ($i = $start; $i <= $end; $i++) {
-        $query = build_query_params(['page' => $i]);
-        $active = $i === $page ? ' active' : '';
-        $html .= '<li class="page-item' . $active . '"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">' . $i . '</a></li>';
+        $query   = build_query_params(['page' => $i]);
+        $active  = $i === $page ? ' active' : '';
+        $html   .= '<li class="page-item' . $active . '"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">' . $i . '</a></li>';
     }
 
     if ($page < $totalPages) {
-        $query = build_query_params(['page' => $page + 1]);
-        $html .= '<li class="page-item"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">&raquo;</a></li>';
+        $query  = build_query_params(['page' => $page + 1]);
+        $html  .= '<li class="page-item"><a class="page-link" href="' . e(build_url($baseUrl, $query)) . '">&raquo;</a></li>';
     } else {
         $html .= '<li class="page-item disabled"><span class="page-link">&raquo;</span></li>';
     }
@@ -187,13 +187,13 @@ function set_flash($key, $message, $type = 'success')
 {
     $_SESSION['flash'][$key] = [
         'message' => $message,
-        'type' => $type,
+        'type'    => $type,
     ];
 }
 
 function get_flash($key)
 {
-    if (!empty($_SESSION['flash'][$key])) {
+    if (! empty($_SESSION['flash'][$key])) {
         $flash = $_SESSION['flash'][$key];
         unset($_SESSION['flash'][$key]);
         return $flash;
@@ -204,12 +204,12 @@ function get_flash($key)
 
 function is_logged_in()
 {
-    return !empty($_SESSION['user']);
+    return ! empty($_SESSION['user']);
 }
 
 function require_login()
 {
-    if (!is_logged_in()) {
+    if (! is_logged_in()) {
         redirect(route_url('admin/login'));
     }
 }
@@ -221,11 +221,11 @@ function active_class($pattern)
 
 function image_url($file, $fallback = 'assets/img/praban-lintang.jpg')
 {
-    if (!$file) {
+    if (! $file) {
         return base_url($fallback);
     }
 
-    $root = dirname(__DIR__, 2);
+    $root       = dirname(__DIR__, 2);
     $uploadPath = $root . '/assets/uploads/' . $file;
     if (is_file($uploadPath)) {
         return base_url('assets/uploads/' . $file);
@@ -241,7 +241,7 @@ function image_url($file, $fallback = 'assets/img/praban-lintang.jpg')
 
 function upload_image($file, &$errors, $label)
 {
-    if (!isset($file['error']) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+    if (! isset($file['error']) || $file['error'] === UPLOAD_ERR_NO_FILE) {
         return null;
     }
 
@@ -255,17 +255,30 @@ function upload_image($file, &$errors, $label)
         return null;
     }
 
-    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $ext     = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $allowed = ['jpg', 'jpeg', 'png', 'webp'];
-    if (!in_array($ext, $allowed, true)) {
+    if (! in_array($ext, $allowed, true)) {
         $errors[] = $label . ' harus jpg, jpeg, png, atau webp.';
         return null;
     }
 
-    $filename = uniqid('img_', true) . '.' . $ext;
-    $destination = UPLOAD_DIR . '/' . $filename;
+    $filename  = uniqid('img_', true) . '.' . $ext;
+    $uploadDir = UPLOAD_DIR;
+    if (! is_dir($uploadDir)) {
+        if (! mkdir($uploadDir, 0755, true) && ! is_dir($uploadDir)) {
+            $errors[] = $label . ' gagal disimpan (folder upload tidak tersedia).';
+            return null;
+        }
+    }
 
-    if (!move_uploaded_file($file['tmp_name'], $destination)) {
+    if (! is_writable($uploadDir)) {
+        $errors[] = $label . ' gagal disimpan (folder upload tidak dapat ditulis).';
+        return null;
+    }
+
+    $destination = $uploadDir . '/' . $filename;
+
+    if (! move_uploaded_file($file['tmp_name'], $destination)) {
         $errors[] = $label . ' gagal disimpan.';
         return null;
     }
