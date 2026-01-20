@@ -42,7 +42,7 @@ body {
   color: var(--color-ink);
   background-color: var(--color-neutral);
   background-image: linear-gradient(120deg, rgba(242, 231, 210, 0.96), rgba(247, 242, 233, 0.94)),
-    url("../img/batik-pattern.svg");
+    url("../img/batik.webp");
   background-size: auto, 240px;
   background-attachment: fixed;
 }
@@ -100,7 +100,7 @@ a:hover {
 
 .hero {
   background: linear-gradient(120deg, rgba(23, 42, 69, 0.75), rgba(138, 79, 59, 0.7)),
-    url("../img/hero-tegal.svg");
+    url("../img/praban-lintang.jpg");
   background-size: cover;
   background-position: center;
   border-radius: var(--radius-lg);

@@ -19,6 +19,64 @@ function base_url($path = '')
     return $base . ($path ? '/' . ltrim($path, '/') : '');
 }
 
+function route_url($route = '', array $params = [])
+{
+    $route = trim($route, '/');
+    if ($route !== '') {
+        $params = array_merge(['route' => $route], $params);
+    }
+
+    $query = http_build_query($params);
+    $base = base_url('index.php');
+
+    if ($query === '') {
+        return $base;
+    }
+
+    return $base . '?' . $query;
+}
+
+function current_route()
+{
+    if (defined('CURRENT_ROUTE')) {
+        return CURRENT_ROUTE;
+    }
+
+    return trim((string) ($_GET['route'] ?? ''), '/');
+}
+
+function route_is($pattern)
+{
+    $current = current_route();
+    $pattern = trim($pattern, '/');
+
+    if ($pattern === '') {
+        return $current === '';
+    }
+
+    if (substr($pattern, -1) === '*') {
+        $base = rtrim($pattern, '*');
+        return $base === '' || strpos($current, $base) === 0;
+    }
+
+    return $current === $pattern;
+}
+
+function view($template, array $data = [])
+{
+    $template = trim($template, '/');
+    $path = __DIR__ . '/views/' . $template . '.php';
+
+    if (!is_file($path)) {
+        http_response_code(500);
+        echo 'View not found.';
+        return;
+    }
+
+    extract($data, EXTR_SKIP);
+    require $path;
+}
+
 function redirect($url)
 {
     header('Location: ' . $url);
@@ -60,7 +118,11 @@ function build_query_params($overrides = [], $exclude = [])
 
 function build_url($baseUrl, $query)
 {
-    return $query ? $baseUrl . '?' . $query : $baseUrl;
+    if ($query === '') {
+        return $baseUrl;
+    }
+
+    return strpos($baseUrl, '?') !== false ? $baseUrl . '&' . $query : $baseUrl . '?' . $query;
 }
 
 function paginate_links($total, $page, $limit, $baseUrl)
@@ -148,16 +210,16 @@ function is_logged_in()
 function require_login()
 {
     if (!is_logged_in()) {
-        redirect(base_url('admin/login.php'));
+        redirect(route_url('admin/login'));
     }
 }
 
-function active_class($file)
+function active_class($pattern)
 {
-    return basename($_SERVER['SCRIPT_NAME']) === $file ? 'active' : '';
+    return route_is($pattern) ? 'active' : '';
 }
 
-function image_url($file, $fallback = 'assets/img/placeholder-card.svg')
+function image_url($file, $fallback = 'assets/img/praban-lintang.jpg')
 {
     if (!$file) {
         return base_url($fallback);
@@ -175,4 +237,38 @@ function image_url($file, $fallback = 'assets/img/placeholder-card.svg')
     }
 
     return base_url($fallback);
+}
+
+function upload_image($file, &$errors, $label)
+{
+    if (!isset($file['error']) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+        return null;
+    }
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        $errors[] = $label . ' gagal diupload.';
+        return null;
+    }
+
+    if ($file['size'] > MAX_UPLOAD_SIZE) {
+        $errors[] = $label . ' melebihi ukuran 2MB.';
+        return null;
+    }
+
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+    if (!in_array($ext, $allowed, true)) {
+        $errors[] = $label . ' harus jpg, jpeg, png, atau webp.';
+        return null;
+    }
+
+    $filename = uniqid('img_', true) . '.' . $ext;
+    $destination = UPLOAD_DIR . '/' . $filename;
+
+    if (!move_uploaded_file($file['tmp_name'], $destination)) {
+        $errors[] = $label . ' gagal disimpan.';
+        return null;
+    }
+
+    return $filename;
 }
