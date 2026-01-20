@@ -1,6 +1,5 @@
 <main class="container my-5" style="max-width: 860px;">
   <h1 class="section-title"><?php echo e($formTitle); ?></h1>
-  <p class="section-subtitle"><?php echo e($subtitle); ?></p>
 
   <?php if ($errors) : ?>
     <div class="alert alert-danger">
@@ -68,7 +67,7 @@
     </div>
     <div class="d-flex gap-2 mt-4">
       <button type="submit" class="btn btn-cta"><?php echo e($submitLabel); ?></button>
-      <a href="<?php echo e($cancelUrl); ?>" class="btn btn-outline-secondary">Batal</a>
+      <a href="<?php echo e($cancelUrl); ?>" class="btn btn-outline-dark">Batal</a>
     </div>
   </form>
 </main>

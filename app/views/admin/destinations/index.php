@@ -2,7 +2,6 @@
   <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
     <div>
       <h1 class="section-title">Destinasi</h1>
-      <p class="section-subtitle">Kelola data destinasi wisata dan budaya.</p>
     </div>
     <a href="<?php echo e(route_url('admin/destinations/create')); ?>" class="btn btn-cta">Tambah Destinasi</a>
   </div>
@@ -11,14 +10,15 @@
     <div class="alert alert-<?php echo e($flash['type']); ?>"><?php echo e($flash['message']); ?></div>
   <?php endif; ?>
 
-  <form method="get" class="card filter-card p-3 mb-3">
+  <form method="get" class="card filter-card p-3 mb-3" action="<?php echo e(route_url('admin/destinations')); ?>">
+    <input type="hidden" name="route" value="admin/destinations">
     <div class="row g-2 align-items-center">
       <div class="col-md-9">
         <input type="text" name="q" class="form-control" placeholder="Cari destinasi" value="<?php echo e($q); ?>">
       </div>
       <div class="col-md-3 d-flex gap-2">
         <button type="submit" class="btn btn-cta flex-fill">Cari</button>
-        <a href="<?php echo e(route_url('admin/destinations')); ?>" class="btn btn-outline-secondary">Reset</a>
+        <a href="<?php echo e(route_url('admin/destinations')); ?>" class="btn btn-outline-dark">Reset</a>
       </div>
     </div>
   </form>

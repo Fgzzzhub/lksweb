@@ -12,7 +12,6 @@
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('admin')); ?>" href="<?php echo e(route_url('admin')); ?>">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('admin/categories*')); ?>" href="<?php echo e(route_url('admin/categories')); ?>">Kategori</a></li>
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('admin/destinations*')); ?>" href="<?php echo e(route_url('admin/destinations')); ?>">Destinasi</a></li>
-        <li class="nav-item"><a class="nav-link <?php echo e(active_class('admin/messages*')); ?>" href="<?php echo e(route_url('admin/messages')); ?>">Pesan</a></li>
         <li class="nav-item ms-lg-2"><a class="btn btn-outline-light btn-sm" href="<?php echo e(route_url('admin/logout')); ?>">Logout</a></li>
       </ul>
     </div>

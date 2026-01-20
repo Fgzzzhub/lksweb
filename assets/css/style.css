@@ -26,25 +26,31 @@
 }
 
 :root {
-  --color-primary: #172a45;
+  --color-primary: #1f2937;
   --color-secondary: #8a4f3b;
-  --color-accent: #d7b46a;
-  --color-neutral: #f2e7d2;
-  --color-sand: #f7f2e9;
-  --color-ink: #1c1f2a;
-  --color-muted: #6c6f77;
-  --shadow-soft: 0 15px 35px rgba(17, 24, 39, 0.12);
-  --radius-lg: 20px;
+  --color-accent: #D7B46A;
+  --color-neutral: #f4f4f4;
+  --color-sand: #f4f4f4;
+  --color-ink: #1f2937;
+  --color-muted: rgba(31, 41, 55, 0.7);
+  --shadow-soft: 0 12px 24px rgba(31, 41, 55, 0.12);
+  --radius-lg: 18px;
+  --bs-gradient: none;
+  --bs-dark: #1f2937;
+  --bs-dark-rgb: 31, 41, 55;
 }
 
 body {
   font-family: "Source Sans 3", "Segoe UI", sans-serif;
   color: var(--color-ink);
   background-color: var(--color-neutral);
-  background-image: linear-gradient(120deg, rgba(242, 231, 210, 0.96), rgba(247, 242, 233, 0.94)),
-    url("../img/batik.webp");
-  background-size: auto, 240px;
-  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 h1, h2, h3, h4, h5, .section-title {
@@ -62,12 +68,12 @@ a:hover {
 }
 
 .nav-heritage {
-  background: linear-gradient(120deg, rgba(23, 42, 69, 0.96), rgba(138, 79, 59, 0.92));
+  background: var(--color-primary);
   box-shadow: 0 10px 30px rgba(12, 18, 32, 0.2);
 }
 
 .nav-admin {
-  background: linear-gradient(120deg, rgba(23, 42, 69, 0.98), rgba(19, 30, 50, 0.95));
+  background: var(--color-primary);
 }
 
 .navbar-brand {
@@ -85,7 +91,7 @@ a:hover {
 }
 
 .btn-cta {
-  background: linear-gradient(120deg, var(--color-accent), #e1c06b);
+  background: var(--color-accent);
   color: var(--color-primary);
   border: none;
   border-radius: 999px;
@@ -93,19 +99,28 @@ a:hover {
   font-weight: 600;
 }
 
-.btn-cta:hover {
+.btn-cta:hover,
+.btn-cta:focus {
+  background: var(--color-accent);
   color: var(--color-primary);
   box-shadow: 0 10px 20px rgba(215, 180, 106, 0.35);
 }
 
+.btn-detail {
+  border-radius: 999px;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+.btn-rounded {
+  border-radius: 999px;
+}
+
 .hero {
-  background: linear-gradient(120deg, rgba(23, 42, 69, 0.75), rgba(138, 79, 59, 0.7)),
-    url("../img/praban-lintang.jpg");
-  background-size: cover;
-  background-position: center;
+  background: var(--color-primary);
   border-radius: var(--radius-lg);
   padding: 5rem 3rem;
-  color: #f8f4ec;
+  color: #fff;
   box-shadow: var(--shadow-soft);
 }
 
@@ -116,10 +131,6 @@ a:hover {
 .section-title {
   font-size: 2.2rem;
   margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  color: var(--color-muted);
 }
 
 .category-card,
@@ -141,41 +152,29 @@ a:hover {
 }
 
 .category-card {
-  background: linear-gradient(140deg, rgba(23, 42, 69, 0.95), rgba(138, 79, 59, 0.92));
+  background: var(--color-primary);
   color: #fff;
   padding: 1.4rem;
-}
-
-.category-card .badge {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border-radius: 999px;
-}
-
-.badge-category {
-  background: rgba(215, 180, 106, 0.15);
-  color: var(--color-secondary);
-  border-radius: 999px;
-  padding: 0.35rem 0.7rem;
 }
 
 .filter-card {
   border-radius: 18px;
   border: none;
   box-shadow: var(--shadow-soft);
-  background: rgba(255, 255, 255, 0.94);
+  background: #fff;
 }
 
 .feature-box {
   border-radius: 18px;
-  background: linear-gradient(120deg, rgba(242, 231, 210, 0.95), rgba(255, 255, 255, 0.9));
+  background: #fff;
+  color: var(--color-ink);
   padding: 2rem;
   box-shadow: var(--shadow-soft);
 }
 
 .site-footer {
-  background: #141f33;
-  color: #f4efe5;
+  background: var(--color-primary);
+  color: #fff;
   padding: 3rem 0 2rem;
 }
 

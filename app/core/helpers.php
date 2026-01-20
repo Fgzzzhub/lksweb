@@ -65,7 +65,7 @@ function route_is($pattern)
 function view($template, array $data = [])
 {
     $template = trim($template, '/');
-    $path = __DIR__ . '/views/' . $template . '.php';
+    $path = dirname(__DIR__) . '/views/' . $template . '.php';
 
     if (!is_file($path)) {
         http_response_code(500);
@@ -225,7 +225,7 @@ function image_url($file, $fallback = 'assets/img/praban-lintang.jpg')
         return base_url($fallback);
     }
 
-    $root = dirname(__DIR__);
+    $root = dirname(__DIR__, 2);
     $uploadPath = $root . '/assets/uploads/' . $file;
     if (is_file($uploadPath)) {
         return base_url('assets/uploads/' . $file);

@@ -2,7 +2,6 @@
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h1 class="section-title">Kategori</h1>
-      <p class="section-subtitle">Kelola kategori destinasi.</p>
     </div>
     <a href="<?php echo e(route_url('admin/categories/create')); ?>" class="btn btn-cta">Tambah Kategori</a>
   </div>

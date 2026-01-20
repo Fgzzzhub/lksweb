@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/app/bootstrap.php';
+require_once __DIR__ . '/app/core/bootstrap.php';
 
-$routes = require __DIR__ . '/app/routes.php';
+$routes = require __DIR__ . '/app/core/routes.php';
 $route = trim((string) ($_GET['route'] ?? ''), '/');
 
 if ($route === '') {

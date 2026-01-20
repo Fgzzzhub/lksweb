@@ -10,8 +10,6 @@ class AdminDashboardController extends BaseController
 
         $destCount = (int) $this->pdo->query('SELECT COUNT(*) FROM destinations')->fetchColumn();
         $catCount = (int) $this->pdo->query('SELECT COUNT(*) FROM categories')->fetchColumn();
-        $msgCount = (int) $this->pdo->query('SELECT COUNT(*) FROM messages')->fetchColumn();
-
-        $this->render('admin/dashboard', compact('pageTitle', 'destCount', 'catCount', 'msgCount'), 'admin');
+        $this->render('admin/dashboard', compact('pageTitle', 'destCount', 'catCount'), 'admin');
     }
 }

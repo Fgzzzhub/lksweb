@@ -2,11 +2,11 @@
   <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
     <div>
       <h1 class="section-title">Kuliner Khas Tegal</h1>
-      <p class="section-subtitle">Rasakan cita rasa legendaris seperti Teh Poci, Kupat Glabed, dan lainnya.</p>
     </div>
   </div>
 
-  <form class="card filter-card p-4 mb-4" method="get" data-auto-submit>
+  <form class="card filter-card p-4 mb-4" method="get" action="<?php echo e(route_url('culinary')); ?>" data-auto-submit>
+    <input type="hidden" name="route" value="culinary">
     <div class="row g-3 align-items-end">
       <div class="col-md-6">
         <label class="form-label">Cari Kuliner</label>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-md-3 d-flex gap-2">
         <button type="submit" class="btn btn-cta flex-fill">Terapkan</button>
-        <a href="<?php echo e(route_url('culinary')); ?>" class="btn btn-outline-secondary">Reset</a>
+        <a href="<?php echo e(route_url('culinary')); ?>" class="btn btn-outline-dark">Reset</a>
       </div>
     </div>
   </form>
@@ -37,10 +37,8 @@
         <div class="card destination-card">
           <img src="<?php echo e(image_url($item['thumbnail'])); ?>" alt="<?php echo e($item['name']); ?>">
           <div class="card-body">
-            <span class="badge-category">Kuliner</span>
-            <h5 class="card-title mt-2"><?php echo e($item['name']); ?></h5>
-            <p class="card-text text-muted"><?php echo e($item['short_desc']); ?></p>
-            <a class="btn btn-sm btn-outline-dark" href="<?php echo e(route_url('destinations/detail', ['slug' => $item['slug']])); ?>">Detail</a>
+            <h5 class="card-title mb-2"><?php echo e($item['name']); ?></h5>
+            <a class="btn btn-sm btn-outline-dark btn-detail" href="<?php echo e(route_url('destinations/detail', ['slug' => $item['slug']])); ?>">Detail</a>
           </div>
         </div>
       </div>

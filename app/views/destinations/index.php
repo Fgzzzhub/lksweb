@@ -2,14 +2,13 @@
   <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
     <div>
       <h1 class="section-title">Daftar Destinasi</h1>
-      <p class="section-subtitle">Cari dan filter destinasi terbaik di Tegal sesuai kebutuhanmu.</p>
     </div>
-    <div class="text-muted">Total: <?php echo e($total); ?> destinasi</div>
   </div>
 
   <div class="row g-4">
     <div class="col-lg-4">
-      <form class="card filter-card p-4" method="get" data-auto-submit>
+      <form class="card filter-card p-4" method="get" action="<?php echo e(route_url('destinations')); ?>" data-auto-submit>
+        <input type="hidden" name="route" value="destinations">
         <h5 class="mb-3">Filter Pencarian</h5>
         <div class="mb-3">
           <label class="form-label">Kata kunci</label>
@@ -54,7 +53,7 @@
         </div>
         <div class="d-flex gap-2">
           <button type="submit" class="btn btn-cta flex-fill">Terapkan</button>
-          <a href="<?php echo e(route_url('destinations')); ?>" class="btn btn-outline-secondary">Reset</a>
+          <a href="<?php echo e(route_url('destinations')); ?>" class="btn btn-outline-dark">Reset</a>
         </div>
       </form>
     </div>
@@ -71,15 +70,9 @@
             <div class="card destination-card">
               <img src="<?php echo e(image_url($item['thumbnail'])); ?>" alt="<?php echo e($item['name']); ?>">
               <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="badge-category"><?php echo e($item['category_name']); ?></span>
-                  <small class="text-muted"><i class="bi bi-geo-alt"></i> <?php echo e($item['location']); ?></small>
-                </div>
-                <h5 class="card-title fw-semibold"><?php echo e($item['name']); ?></h5>
-                <p class="card-text text-muted"><?php echo e($item['short_desc']); ?></p>
+                <h5 class="card-title fw-semibold mb-2"><?php echo e($item['name']); ?></h5>
                 <div class="d-flex justify-content-between align-items-center">
-                  <a class="btn btn-sm btn-outline-dark" href="<?php echo e(route_url('destinations/detail', ['slug' => $item['slug']])); ?>">Detail</a>
-                  <span class="text-muted small"><i class="bi bi-eye"></i> <?php echo e($item['views']); ?></span>
+                  <a class="btn btn-sm btn-outline-dark btn-detail" href="<?php echo e(route_url('destinations/detail', ['slug' => $item['slug']])); ?>">Detail</a>
                 </div>
               </div>
             </div>

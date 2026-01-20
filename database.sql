@@ -3,7 +3,6 @@ USE tegal_portal;
 
 DROP TABLE IF EXISTS destination_images;
 DROP TABLE IF EXISTS destinations;
-DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS users;
 
@@ -42,15 +41,6 @@ CREATE TABLE destination_images (
   file_name VARCHAR(255) NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_image_destination FOREIGN KEY (destination_id) REFERENCES destinations(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE messages (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(120) NOT NULL,
-  subject VARCHAR(150) NOT NULL,
-  message TEXT NOT NULL,
-  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO users (id, username, password_hash, role, created_at) VALUES

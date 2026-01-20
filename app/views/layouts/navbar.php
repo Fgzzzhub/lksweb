@@ -13,7 +13,6 @@
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('destinations*')); ?>" href="<?php echo e(route_url('destinations')); ?>">Destinasi</a></li>
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('culture')); ?>" href="<?php echo e(route_url('culture')); ?>">Budaya</a></li>
         <li class="nav-item"><a class="nav-link <?php echo e(active_class('culinary')); ?>" href="<?php echo e(route_url('culinary')); ?>">Kuliner</a></li>
-        <li class="nav-item"><a class="nav-link <?php echo e(active_class('contact')); ?>" href="<?php echo e(route_url('contact')); ?>">Kontak</a></li>
         <li class="nav-item ms-lg-2"><a class="btn btn-cta" href="<?php echo e(route_url('admin/login')); ?>">Admin</a></li>
       </ul>
     </div>

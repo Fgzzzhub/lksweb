@@ -8,7 +8,7 @@ define('DB_PASS', 'Sriwedari06');
 
 define('BASE_URL', 'http://localhost:8000/');
 
-define('UPLOAD_DIR', __DIR__ . '/../assets/uploads');
+define('UPLOAD_DIR', dirname(__DIR__, 2) . '/assets/uploads');
 define('MAX_UPLOAD_SIZE', 2 * 1024 * 1024);
 
 define('SITE_NAME', 'Portal Destinasi & Kearifan Lokal Tegal');
